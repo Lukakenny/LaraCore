@@ -35,7 +35,7 @@
     <div class="pt-16 flex flex-1 h-screen overflow-hidden">
 
         <aside
-            class="w-64 bg-white/5 backdrop-blur-lg border-r border-white/10 flex flex-col p-4 overflow-y-auto hidden md:flex">
+            class="w-64 bg-white/5 backdrop-blur-lg border-r border-white/10 flex flex-col p-4 overflow-y-auto md:flex">
 
             <div class="flex flex-col space-y-2 flex-1">
 
