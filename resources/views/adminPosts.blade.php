@@ -35,12 +35,16 @@
                            <td class="px-6 py-4 text-sm text-white/70">
                                Vesti
                            </td>
-
-
-
                            <td class="px-6 py-4 text-right space-x-3">
                                <a href="#" class="text-blue-400 hover:text-blue-300 hover:underline text-sm transition">Izmeni</a>
-                               <button type="button" class="text-red-400 hover:text-red-300 hover:underline text-sm transition">Obriši</button>
+                               <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="inline-block">
+                                   @csrf
+                                   @method('DELETE')
+                                   <button type="submit" class="text-red-400 hover:text-red-300 hover:underline text-sm transition">
+                                       Obriši
+                                   </button>
+                               </form>
+
                            </td>
                        </tr>
 
