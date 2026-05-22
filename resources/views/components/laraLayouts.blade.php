@@ -27,7 +27,7 @@
             <span class="text-sm font-medium text-white/80">Admin</span>
             <div
                 class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold shadow-inner border border-white/10">
-                A
+                {{ mb_strtoupper(mb_substr(Auth::user()->name, 0, 1)) }}
             </div>
         </div>
     </nav>
@@ -39,29 +39,27 @@
 
             <div class="flex flex-col space-y-2 flex-1">
 
-                <a href="#"
-                   class="px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white font-medium shadow-sm flex items-center space-x-3">
-                    <span class="text-[#FF2D20]">●</span>
+                <a href="{{route('admin.admin')}}"
+                   class="px-4 py-3  font-medium shadow-sm flex items-center space-x-3
+                   {{ request()->routeIs('admin.admin') ? 'bg-white/10 border border-white/20 text-white font-medium shadow-sm' : 'text-white/70 hover:text-white hover:bg-white/5' }}">
+                    <span class="{{ request()->routeIs('admin.admin') ? 'text-[#FF2D20]' : 'text-white/30' }}">●</span>
                     <span>Dashboard</span>
                 </a>
 
-                <a href="#"
-                   class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3">
-                    <span class="text-white/30">●</span>
+                <a href="{{route('admin.posts.index')}}"
+                   class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3
+                   {{ request()->routeIs('admin.posts.index.*') ? 'bg-white/10 border border-white/20 text-white font-medium shadow-sm' : 'text-white/70 hover:text-white hover:bg-white/5' }}">
+                    <span class="{{ request()->routeIs('admin.posts.index.*') ? 'text-[#FF2D20]' : 'text-white/30' }}">●</span>
                     <span>Objave (Posts)</span>
                 </a>
 
                 <a href="#"
-                   class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3">
-                    <span class="text-white/30">●</span>
+                   class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3
+                   {{ request()->is('admin/categories*') ? 'bg-white/10 border border-white/20 text-white font-medium shadow-sm' : 'text-white/70 hover:text-white hover:bg-white/5' }}">
+                    <span class="{{ request()->is('admin/categories') ? 'text-[#FF2D20]' : 'text-white/30' }}">●</span>
                     <span>Kategorije</span>
                 </a>
 
-                <a href="#"
-                   class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3">
-                    <span class="text-white/30">●</span>
-                    <span>Podešavanja</span>
-                </a>
             </div>
 
             <div class="mt-auto pt-4 border-t border-white/10">
