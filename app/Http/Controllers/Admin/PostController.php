@@ -15,6 +15,7 @@ class PostController extends Controller
     {
         $posts = PostModel::all();
 
+
         return view('admin/adminPosts', compact('posts'));
     }
 

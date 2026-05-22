@@ -3,17 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\adminAddCategory;
+use App\Models\CategoryModel;
+use App\Repositories\adminCategoryRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    private $categoryRepo;
+
+    public function __construct()
+    {
+        $this->categoryRepo = new adminCategoryRepository();
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+      $categories = CategoryModel::all();
 
-        return view('admin/adminCategory');
+        return view('admin/adminCategory', compact('categories'));
     }
 
     /**
@@ -27,9 +38,10 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store( adminAddCategory $request)
     {
-        //
+        $this->categoryRepo->createCategory($request);
+        return redirect()->route('admin.categories.index');
     }
 
     /**
