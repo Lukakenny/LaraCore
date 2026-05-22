@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,14 +10,19 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('admin', function () {return view('admin');})->name('admin');
+    Route::get('admin', function () {return view('admin/admin');})->name('admin');
     Route::resource('posts', PostController::class)->names([
         'index' => 'posts.index',
-        'create' => 'posts.create',
-        'store' => 'posts.store',
-        'edit' => 'posts.edit',
-        'update' => 'posts.update',
+        'show' => 'posts.show',
         'destroy' => 'posts.destroy',
+    ]);
+    Route::resource('categories', CategoryController::class)->names([
+        'index' => 'categories.index',
+        'create' => 'categories.create',
+        'store' => 'categories.store',
+        'edit' => 'categories.edit',
+        'update' => 'categories.update',
+        'destroy' => 'categories.destroy',
     ]);
 });
 
