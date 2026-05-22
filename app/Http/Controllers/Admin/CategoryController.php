@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\adminAddCategory;
 use App\Models\CategoryModel;
+use App\Models\PostModel;
 use App\Repositories\adminCategoryRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -20,11 +21,30 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-      $categories = CategoryModel::all();
+        // 1. Uzimamo sve kategorije iz baze za gornji meni (ili koristi svoj Repo ako ga imaš)
+        $categories = \App\Models\CategoryModel::all();
 
-        return view('admin/adminCategory', compact('categories'));
+        // 2. Spremamo upit za postove (uzimamo najnovije)
+        $postsQuery = \App\Models\PostModel::latest();
+
+        // 3. Proveravamo da li u URL-u postoji reč 'filter'
+        if ($request->has('filter')) {
+            // Nalazimo kategoriju po onom "slugu" o kom smo pričali
+            $selectedCategory = \App\Models\CategoryModel::where('slug', $request->filter)->first();
+
+            if ($selectedCategory) {
+                // Ako je nađena kategorija, filtriraj postove samo za nju!
+                $postsQuery->where('category_id', $selectedCategory->id);
+            }
+        }
+
+        // 4. Izvršavamo upit i dobijamo postove
+        $posts = $postsQuery->get();
+
+        // 5. Šaljemo sve u tvoj prelepi stakleni view
+        return view('admin/adminCategory', compact('categories', 'posts'));
     }
 
     /**

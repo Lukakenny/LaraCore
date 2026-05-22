@@ -22,10 +22,17 @@
                 <span>📂</span> Izaberi kategoriju za pregled objava:
             </h3>
 
+
             <div class="flex flex-wrap gap-3">
+                <a href="{{ route('admin.categories.index') }}"
+                   class="px-5 py-2 rounded-xl text-sm transition-all duration-200 border
+       {{ !request('filter') ? 'bg-white/20 border-white/40 text-white font-semibold shadow-inner' : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white' }}">
+                    Sve objave
+                </a>
+
 
                   @foreach($categories as $category)
-                    <a href="#" class="px-5 py-2 rounded-xl text-sm transition-all duration-200 border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
+                    <a href="{{route('admin.categories.index', ['filter' => $category->slug])}}" class="px-5 py-2 rounded-xl text-sm transition-all duration-200 border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
                         {{ $category->name}}
                     </a>
 
@@ -39,42 +46,29 @@
 
         <div>
             <div class="flex justify-between items-end mb-6">
-                <h2 class="text-xl font-bold text-white">
-                    Objave u kategoriji: <span class="text-[#FF2D20]">Tutorijali</span>
-                </h2>
-                <span class="text-white/50 text-sm">Pronađeno: 2 objave</span>
+                <span class="text-white/50 text-sm">Pronađeno: {{count($posts)}} postova</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors duration-300 flex flex-col h-full">
-                    <div class="flex-1">
-                        <span class="text-xs text-white/40 mb-2 block">20. Maj 2026.</span>
-                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Kako napraviti stakleni dizajn u Tailwindu</h3>
-                        <p class="text-sm text-white/60 line-clamp-3">Ovo je kratak opis posta koji će se prikazati na kartici. Glassmorphism je postao veoma popularan u svetu web dizajna...</p>
-                    </div>
+                    @forelse($posts as $post)
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors duration-300 flex flex-col h-full">
+                        <div class="flex-1">
+                            <span class="text-xs text-white/40 mb-2 block">{{$post->created_at}}</span>
+                            <h3 class="text-lg font-bold text-white mb-2 leading-tight">{{$post->title}}</h3>
+                            <p class="text-sm text-white/60 line-clamp-3">{{$post->body}}</p>
+                        </div>
 
-                    <div class="mt-6 flex justify-between items-center border-t border-white/10 pt-4">
-                        <span class="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs border border-green-500/20">Objavljeno</span>
-                        <a href="#" class="text-sm text-blue-400 hover:text-blue-300">Izmeni &rarr;</a>
-                    </div>
-                </div>
+                        @empty
+                            <div class="col-span-full text-center py-10">
+                                <p class="text-white/50 text-lg">Trenutno nema objava u ovoj kategoriji.</p>
+                            </div>
 
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors duration-300 flex flex-col h-full">
-                    <div class="flex-1">
-                        <span class="text-xs text-white/40 mb-2 block">18. Maj 2026.</span>
-                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Uvod u Laravel Relacije</h3>
-                        <p class="text-sm text-white/60 line-clamp-3">Učenje relacija je ključno za svaku aplikaciju. Povezivanje tabela nikada nije bilo lakše uz Eloquent...</p>
-                    </div>
+                    @endforelse
 
-                    <div class="mt-6 flex justify-between items-center border-t border-white/10 pt-4">
-                        <span class="px-2 py-1 rounded bg-yellow-500/20 text-yellow-400 text-xs border border-yellow-500/20">Draft</span>
-                        <a href="#" class="text-sm text-blue-400 hover:text-blue-300">Izmeni &rarr;</a>
-                    </div>
-                </div>
 
             </div>
         </div>
-
+        </div>
     </div>
 </x-laraLayouts>
