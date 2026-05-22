@@ -36,7 +36,7 @@
                                Vesti
                            </td>
                            <td class="px-6 py-4 text-right space-x-3">
-                               <a href="#" class="text-blue-400 hover:text-blue-300 hover:underline text-sm transition">Izmeni</a>
+                               <a href="{{route('admin.posts.show',['post' => $post->id])}}" class="text-blue-400 hover:text-blue-300 hover:underline text-sm transition">Procitaj</a>
                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="inline-block">
                                    @csrf
                                    @method('DELETE')

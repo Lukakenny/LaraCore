@@ -48,8 +48,8 @@
 
                 <a href="{{route('admin.posts.index')}}"
                    class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3
-                   {{ request()->routeIs('admin.posts.index.*') ? 'bg-white/10 border border-white/20 text-white font-medium shadow-sm' : 'text-white/70 hover:text-white hover:bg-white/5' }}">
-                    <span class="{{ request()->routeIs('admin.posts.index.*') ? 'text-[#FF2D20]' : 'text-white/30' }}">●</span>
+                   {{ request()->routeIs('admin.posts.index') ? 'bg-white/10 border border-white/20 text-white font-medium shadow-sm' : 'text-white/70 hover:text-white hover:bg-white/5' }}">
+                    <span class="{{ request()->routeIs('admin.posts.index') ? 'text-[#FF2D20]' : 'text-white/30' }}">●</span>
                     <span>Objave (Posts)</span>
                 </a>
 
