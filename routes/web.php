@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('admin', function () {return view('admin/admin');})->name('admin');
+    Route::get('admin', [DashboardController::class,'index'])->name('admin');
     Route::resource('posts', PostController::class)->names([
         'index' => 'posts.index',
         'show' => 'posts.show',

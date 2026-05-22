@@ -10,6 +10,7 @@ class adminCategoryRepository
 {
  private $categoryModel;
 
+
  public function __construct(){
      $this->categoryModel = new CategoryModel();
  }
@@ -21,4 +22,16 @@ class adminCategoryRepository
        'slug' => Str::slug($request->name),
    ]);
  }
+
+
+    public function getAll()
+    {
+        return $this->categoryModel::all();
+    }
+
+    public function findBySlug($slug)
+    {
+
+        return $this->categoryModel::where('slug', $slug)->first();
+    }
 }

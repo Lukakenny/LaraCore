@@ -17,28 +17,30 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->categoryRepo = new adminCategoryRepository();
+
     }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         // 1. Uzimamo sve kategorije iz baze za gornji meni (ili koristi svoj Repo ako ga imaš)
-        $categories = \App\Models\CategoryModel::all();
+        $categories = $this->categoryRepo->getAll();
 
         // 2. Spremamo upit za postove (uzimamo najnovije)
         $postsQuery = \App\Models\PostModel::latest();
 
-        // 3. Proveravamo da li u URL-u postoji reč 'filter'
-        if ($request->has('filter')) {
-            // Nalazimo kategoriju po onom "slugu" o kom smo pričali
-            $selectedCategory = \App\Models\CategoryModel::where('slug', $request->filter)->first();
+        $selectedCategory = $request->has('filter')
+            ? $this->categoryRepo->findBySlug($request->filter)
+            : null;
 
             if ($selectedCategory) {
                 // Ako je nađena kategorija, filtriraj postove samo za nju!
                 $postsQuery->where('category_id', $selectedCategory->id);
             }
-        }
+
 
         // 4. Izvršavamo upit i dobijamo postove
         $posts = $postsQuery->get();
