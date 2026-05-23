@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = PostModel::all();
+        $posts = PostModel::latest()->paginate(20);
 
 
         return view('admin/adminPosts', compact('posts'));
