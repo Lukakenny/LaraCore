@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\checkAdminOrUser;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,12 @@ Route::middleware('auth',checkAdminOrUser::class)->prefix('admin')->name('admin.
     ]);
 });
 
-Route::get('/homePage', function () {
-    return view('user/homePage');
-}) ;
+Route::resource('user', UserController::class)->names([
+    'index' => 'user.index',
+    'store' => 'user.store',
+]);
+
+
 
 
 require __DIR__.'/auth.php';
