@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\userAddPost;
+use App\Models\CategoryModel;
+use App\Models\PostModel;
+use App\Repositories\UserPostsRepository;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserPostsController extends Controller
 {
+
+    private $postRepo;
+
+    public function __construct()
+    {
+        $this->postRepo = new UserPostsRepository();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('user/homePage');
+        $posts = PostModel::latest()->paginate(20);
+        $categories = CategoryModel::all();
+        return view('user/homePage', compact('categories', 'posts'));
     }
 
     /**
@@ -25,9 +39,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(userAddPost $request)
     {
-        //
+        $this->postRepo->createPost($request->validated());
+        return redirect()->back();
     }
 
     /**

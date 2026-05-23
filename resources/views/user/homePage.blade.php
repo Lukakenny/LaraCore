@@ -14,7 +14,8 @@
                 </div>
             </div>
 
-            <form action="#" method="POST" class="space-y-4">
+            <form action="{{route('user.store')}}" method="POST" class="space-y-4">
+                {{csrf_field()}}
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Naslov</label>
                     <input type="text" name="title" placeholder="Unesi upečatljiv naslov..."
@@ -26,9 +27,10 @@
                     <div class="relative">
                         <select name="category_id" class="w-full bg-[#121212]/40 border border-white/10 text-white rounded-xl px-4 py-2.5 outline-none focus:border-red-500/50 focus:bg-[#121212]/80 transition-all text-sm appearance-none cursor-pointer">
                             <option value="" class="text-slate-900">Izaberi kategoriju...</option>
-                            <option value="1" class="text-slate-900">Programiranje</option>
-                            <option value="2" class="text-slate-900">Dizajn</option>
-                            <option value="3" class="text-slate-900">Zanimljivosti</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" class="text-slate-900">{{$category->name}}</option>
+                            @endforeach
+
                         </select>
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
                             ▾
@@ -59,33 +61,40 @@
                     </span>
             </div>
 
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-300 group shadow-xl">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
-                            AA
+
+
+               @foreach($posts as $post)
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-300 group shadow-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
+                                AA
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium text-sm group-hover:text-red-400 transition-colors">
+                                    {{$post->name}}</h4>
+                                <p class="text-xs text-slate-400">pre 15 minuta</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="text-white font-medium text-sm group-hover:text-red-400 transition-colors">Asistent Nikola</h4>
-                            <p class="text-xs text-slate-400">pre 15 minuta</p>
-                        </div>
-                    </div>
-                    <span class="px-3 py-1 rounded-lg bg-red-500/10 text-red-400 text-xs border border-red-500/20 font-medium">
-                            Programiranje
+                        <span class="px-3 py-1 rounded-lg bg-red-500/10 text-red-400 text-xs border border-red-500/20 font-medium">
+                           {{ $post->category->name}}
                         </span>
-                </div>
+                    </div>
 
-                <h3 class="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">Uvod u Vite i Laravel: Zašto je sve tako brzo?</h3>
-                <p class="text-slate-300 text-sm leading-relaxed line-clamp-3 mb-4">
-                    Vite je potpuno zamenio stari Webpack u Laravelu i doneo neverovatno ubrzanje prilikom lokalnog razvoja. Više nema čekanja od nekoliko sekundi da se promene u Tailwind klasama osveže na ekranu – sve se dešava trenutno (Hot Module Replacement)!
-                </p>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">{{$post->title}}</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed line-clamp-3 mb-4">
+                       {{$post->body}}
+                    </p>
 
-                <div class="flex justify-end border-t border-white/5 pt-4">
-                    <a href="#" class="text-xs font-semibold text-red-400 hover:text-red-300 flex items-center gap-1 transition-all group-hover:gap-2">
-                        Pročitaj ceo tekst <span>&rarr;</span>
-                    </a>
+                    <div class="flex justify-end border-t border-white/5 pt-4">
+                        <a href="#" class="text-xs font-semibold text-red-400 hover:text-red-300 flex items-center gap-1 transition-all group-hover:gap-2">
+                            Pročitaj ceo tekst <span>&rarr;</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
+               @endforeach
+
+
 
             <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-300 group shadow-xl">
                 <div class="flex items-center justify-between mb-4">

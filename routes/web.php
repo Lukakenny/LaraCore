@@ -4,7 +4,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPostsController;
 use App\Http\Middleware\checkAdminOrUser;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +25,7 @@ Route::middleware('auth',checkAdminOrUser::class)->prefix('admin')->name('admin.
     ]);
 });
 
-Route::resource('user', UserController::class)->names([
+Route::resource('user', UserPostsController::class)->names([
     'index' => 'user.index',
     'store' => 'user.store',
 ]);
