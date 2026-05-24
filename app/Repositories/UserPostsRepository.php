@@ -22,5 +22,21 @@ class UserPostsRepository
         $data['slug'] = Str::slug($data['title']);
         return $this->postModel::create($data);
     }
+
+    public function getUserPosts($id)
+    {
+        return $this->postModel::where('user_id', $id)
+            ->latest()
+            ->paginate(20);
+    }
+
+    public function deletePost($id)
+    {
+        $post = PostModel::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        return $post->delete();
+    }
 }
 

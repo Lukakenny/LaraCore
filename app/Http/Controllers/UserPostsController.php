@@ -74,8 +74,18 @@ class UserPostsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+         $this->postRepo->deletePost($id);
+
+        return redirect()->back();
+    }
+
+    public function myPosts()
+    {
+
+       $posts = $this->postRepo->getUserPosts(auth()->id());
+
+        return view('user/myPosts',compact('posts'));
     }
 }

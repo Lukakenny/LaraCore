@@ -23,10 +23,19 @@
             </div>
 
             <div class="flex items-center gap-2 sm:gap-4">
-                <a href="#" class="px-4 py-2 rounded-xl text-sm font-medium bg-white/10 text-white border border-white/10 shadow-inner transition-all">
+                <a href="{{ route('user.index') }}"
+                   class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+          {{ request()->routeIs('user.index')
+                ? 'bg-white/10 text-white border border-white/10 shadow-inner'
+                : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
                     ✨ Svi postovi
                 </a>
-                <a href="#" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+
+                <a href="{{ route('user.myPosts') }}"
+                   class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+          {{ request()->routeIs('user.myPosts')
+                ? 'bg-white/10 text-white border border-white/10 shadow-inner'
+                : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
                     📁 Moji postovi
                 </a>
             </div>
@@ -49,3 +58,7 @@
         </div>
     </div>
 </nav>
+{{$slot}}
+
+</body>
+</html>
