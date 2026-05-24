@@ -23,7 +23,9 @@ class UserPostsController extends Controller
      */
     public function index()
     {
-        $posts = PostModel::latest()->paginate(20);
+        $posts = PostModel::with(['user', 'category'])
+            ->latest()
+            ->paginate(20);
         $categories = CategoryModel::all();
         return view('user/homePage', compact('categories', 'posts'));
     }

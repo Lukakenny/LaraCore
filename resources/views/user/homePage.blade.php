@@ -68,12 +68,15 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
-                                AA
+                                {{ Str::upper(Str::substr($post->user->name, 0, 1)) }}
                             </div>
+                            <h4 class="text-white font-medium text-sm group-hover:text-red-400 transition-colors">
+                                {{$post->user->name}}
+                            </h4>
                             <div>
                                 <h4 class="text-white font-medium text-sm group-hover:text-red-400 transition-colors">
                                     {{$post->name}}</h4>
-                                <p class="text-xs text-slate-400">pre 15 minuta</p>
+                                <p class="text-xs text-slate-400"><p>{{ $post->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
                         <span class="px-3 py-1 rounded-lg bg-red-500/10 text-red-400 text-xs border border-red-500/20 font-medium">
@@ -93,40 +96,7 @@
                     </div>
                 </div>
                @endforeach
-
-
-
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-300 group shadow-xl">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-white font-bold shadow-md">
-                            MD
-                        </div>
-                        <div>
-                            <h4 class="text-white font-medium text-sm group-hover:text-rose-400 transition-colors">Milica Dizajn</h4>
-                            <p class="text-xs text-slate-400">pre 2 sata</p>
-                        </div>
-                    </div>
-                    <span class="px-3 py-1 rounded-lg bg-rose-500/10 text-rose-400 text-xs border border-rose-500/20 font-medium">
-                            Dizajn
-                        </span>
-                </div>
-
-                <h3 class="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">Kako uskladiti tamne modove sa staklenim efektima</h3>
-                <p class="text-slate-300 text-sm leading-relaxed line-clamp-3 mb-4">
-                    Pravljenje glassmorphism dizajna zahteva pažljivo biranje pozadinskih boja. Kada radite sa tamnim nijansama, bele polu-providne ivice daju savršen osećaj dubine i premium izgleda aplikacije...
-                </p>
-
-                <div class="flex justify-end border-t border-white/5 pt-4">
-                    <a href="#" class="text-xs font-semibold text-rose-400 hover:text-rose-300 flex items-center gap-1 transition-all group-hover:gap-2">
-                        Pročitaj ceo tekst <span>&rarr;</span>
-                    </a>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
 
-</body>
-</html>

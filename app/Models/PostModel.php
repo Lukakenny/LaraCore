@@ -17,4 +17,9 @@ class PostModel extends Model
     {
         return $this->belongsTo(CategoryModel::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
