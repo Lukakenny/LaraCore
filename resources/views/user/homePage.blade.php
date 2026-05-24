@@ -86,11 +86,6 @@
                             {{$post->body}}
                         </p>
 
-                        <div class="flex justify-end border-t border-white/5 pt-4">
-                            <a href="#" class="text-xs font-semibold text-red-400 hover:text-red-300 flex items-center gap-1 transition-all group-hover:gap-2">
-                                Pročitaj ceo tekst <span>&rarr;</span>
-                            </a>
-                        </div>
                     </div>
                 @endforeach
             </div>

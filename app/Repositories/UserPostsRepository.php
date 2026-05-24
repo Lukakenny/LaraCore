@@ -38,5 +38,12 @@ class UserPostsRepository
 
         return $post->delete();
     }
+
+    public function editPost($id)
+    {
+        return PostModel::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+    }
 }
 
