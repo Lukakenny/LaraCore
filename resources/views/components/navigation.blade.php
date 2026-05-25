@@ -8,6 +8,7 @@
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
+    <script src="https://cdn.tiny.cloud/1/kw4v5izcn6dna8s8chni7p5p16tryvzfj22zjvu9uhmvw9jn/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-[#121212] via-[#2d0b0b] to-[#121212] min-h-screen font-sans antialiased text-slate-200">

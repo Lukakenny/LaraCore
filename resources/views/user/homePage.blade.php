@@ -97,7 +97,7 @@
                         </p>
                         @forelse($post->comments as $comment)
 
-                            <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-6">
                                 <div class="flex items-center gap-3 mb-3">
                                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-xs font-bold text-white shadow-inner">
                                         {{ substr($comment->user->name, 0, 1) }}
@@ -109,7 +109,7 @@
                                 </div>
 
                                 <p class="text-slate-300 text-sm leading-relaxed">
-                                    {{ $comment->body }}
+                                    {!! $comment->body !!}
                                 </p>
                             </div>
                         @empty
@@ -126,7 +126,8 @@
                                           rows="3"
                                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-sm resize-none"
                                           placeholder="Napiši komentar..."
-                                          required></textarea>
+                                          ></textarea>
+
                             </div>
 
                             <div class="flex justify-end">
@@ -136,6 +137,18 @@
                                 </button>
                             </div>
                         </form>
+                        <script>
+                            tinymce.init({
+                                selector: '#comment',
+                                skin: 'oxide-dark',
+                                content_css: 'dark',
+                                plugins: 'link wordcount', // Samo osnovni dodaci
+                                toolbar: 'bold italic | alignleft aligncenter | link', // Skraćen toolbar za komentare
+                                height: 200, // Manja visina, idealna za komentare
+                                branding: false,
+                                menubar: false // Sklanja onaj gornji "File, Edit, View" meni koji ne treba za komentare
+                            });
+                        </script>
 
                     </div>
                 @endforeach
