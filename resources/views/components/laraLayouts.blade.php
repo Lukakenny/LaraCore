@@ -60,6 +60,13 @@
                     <span>Kategorije</span>
                 </a>
 
+                <a href="{{route('user.index')}}"
+                   class="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-colors duration-200 flex items-center space-x-3
+                   {{ request()->is('user.index') ? 'bg-white/10 border border-white/20 text-white font-medium shadow-sm' : 'text-white/70 hover:text-white hover:bg-white/5' }}">
+                    <span class="{{ request()->is('user.index') ? 'text-[#FF2D20]' : 'text-white/30' }}">●</span>
+                    <span>Idi na user stranicu</span>
+                </a>
+
             </div>
 
             <div class="mt-auto pt-4 border-t border-white/10">

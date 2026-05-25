@@ -22,22 +22,49 @@
                 <span class="text-xl font-bold text-white tracking-tight">LaraCore</span>
             </div>
 
-            <div class="flex items-center gap-2 sm:gap-4">
-                <a href="{{ route('user.index') }}"
-                   class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+            @if(Auth::user()->role == 'user')
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <a href="{{ route('user.index') }}"
+                       class="px-4 py-2 rounded-xl text-sm font-medium transition-all
           {{ request()->routeIs('user.index')
                 ? 'bg-white/10 text-white border border-white/10 shadow-inner'
                 : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
-                    ✨ Svi postovi
-                </a>
+                        ✨ Svi postovi
+                    </a>
 
-                <a href="{{ route('user.myPosts') }}"
-                   class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+                    <a href="{{ route('user.myPosts') }}"
+                       class="px-4 py-2 rounded-xl text-sm font-medium transition-all
           {{ request()->routeIs('user.myPosts')
                 ? 'bg-white/10 text-white border border-white/10 shadow-inner'
                 : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
-                    📁 Moji postovi
-                </a>
+                        📁 Moji postovi
+                    </a>
+                    @else
+                        <div class="flex items-center gap-2 sm:gap-4">
+                            <a href="{{ route('user.index') }}"
+                               class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+          {{ request()->routeIs('user.index')
+                ? 'bg-white/10 text-white border border-white/10 shadow-inner'
+                : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
+                                ✨ Svi postovi
+                            </a>
+
+                            <a href="{{ route('user.myPosts') }}"
+                               class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+          {{ request()->routeIs('user.myPosts')
+                ? 'bg-white/10 text-white border border-white/10 shadow-inner'
+                : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
+                                📁 Moji postovi
+                            </a>
+                            <a href="{{ route('admin.admin') }}"
+                               class="px-4 py-2 rounded-xl text-sm font-medium transition-all
+          {{ request()->routeIs('admin.admin')
+                ? 'bg-white/10 text-white border border-white/10 shadow-inner'
+                : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent' }}">
+                                📁 Admin dashboard
+                            </a>
+
+            @endif
             </div>
 
             <div class="flex items-center gap-4">
@@ -53,6 +80,7 @@
                             <span>Odjava</span>
                         </button>
                     </form>
+                </div>
                 </div>
             </div>
         </div>
