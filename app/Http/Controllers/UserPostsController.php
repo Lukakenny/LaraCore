@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\userAddPost;
+use App\Http\Requests\userUpdatePostRequest;
 use App\Models\CategoryModel;
 use App\Models\PostModel;
 use App\Repositories\UserPostsRepository;
@@ -58,7 +59,7 @@ class UserPostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit( string $id)
     {
         $categories = CategoryModel::all();
            $post = $this->postRepo->editPost($id);
@@ -69,15 +70,16 @@ class UserPostsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(userUpdatePostRequest $request, string $post)
     {
-        //
+        $this->postRepo->updatePost($post, $request->validated());
+        return redirect()->route('user.myPosts');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy( string $id)
     {
          $this->postRepo->deletePost($id);
 

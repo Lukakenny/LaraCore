@@ -31,6 +31,7 @@ Route::resource('user', UserPostsController::class)->names([
     'store' => 'user.store',
     'destroy' => 'user.destroy',
     'edit' => 'user.edit',
+    'update' => 'user.update',
 ]);
 
 

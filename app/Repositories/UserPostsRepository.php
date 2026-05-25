@@ -45,5 +45,13 @@ class UserPostsRepository
             ->where('user_id', auth()->id())
             ->firstOrFail();
     }
+
+    public function updatePost($post, array $data)
+    {
+        $post = \App\Models\PostModel::where('id', $post)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+    return $post->update($data);
+    }
 }
 

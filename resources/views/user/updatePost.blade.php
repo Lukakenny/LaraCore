@@ -14,7 +14,9 @@
             <p class="text-sm text-slate-400 mt-1">Unesi izmene u polja ispod. Sva polja su obavezna.</p>
         </div>
 
-        <form action="#" method="POST" class="space-y-6">
+        <form action="{{route('user.update',$post->id)}}" method="POST" class="space-y-6">
+            @csrf
+            @method('PUT')
             <div>
                 <label for="title" class="block text-sm font-medium text-slate-300 mb-2">
                     Naslov objave
@@ -68,6 +70,7 @@
                         class="bg-gradient-to-r from-[#FF2D20] to-red-700 hover:from-red-500 hover:to-red-600 text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-red-500/20 active:scale-95">
                     💾 Sačuvaj izmene
                 </button>
+
             </div>
         </form>
 
