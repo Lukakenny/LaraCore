@@ -1,27 +1,28 @@
 <?php
+
 namespace App\Repositories;
 
 
-
-use Illuminate\Support\Str;
 use App\Models\CategoryModel;
+use Illuminate\Support\Str;
 
 class adminCategoryRepository
 {
- private $categoryModel;
+    private $categoryModel;
 
 
- public function __construct(){
-     $this->categoryModel = new CategoryModel();
- }
+    public function __construct()
+    {
+        $this->categoryModel = new CategoryModel();
+    }
 
- public function createCategory($request)
- {
-   $this->categoryModel::create([
-       'name' => $request->name,
-       'slug' => Str::slug($request->name),
-   ]);
- }
+    public function createCategory(array $data)
+    {
+        $this->categoryModel::create([
+            'name' => $data['name'],
+            'slug' => Str::slug($data['name']),
+        ]);
+    }
 
 
     public function getAll()
@@ -29,7 +30,7 @@ class adminCategoryRepository
         return $this->categoryModel::all();
     }
 
-    public function findBySlug($slug)
+    public function findBySlug(string $slug)
     {
 
         return $this->categoryModel::where('slug', $slug)->first();

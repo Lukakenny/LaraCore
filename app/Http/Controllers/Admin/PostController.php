@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PostModel;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -30,7 +29,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( PostModel $post)
+    public function destroy(PostModel $post)
     {
         $post->delete();
         return redirect()->back();

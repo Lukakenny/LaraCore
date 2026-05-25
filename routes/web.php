@@ -9,7 +9,7 @@ use App\Http\Middleware\checkAdminOrUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.register');
 });
 
 Route::middleware('auth',checkAdminOrUser::class)->prefix('admin')->name('admin.')->group(function () {

@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryModel extends Model
 {
-   protected $table ="categories";
+    protected $table = "categories";
 
-   protected $fillable =[
-       'name','slug'
-   ];
+    protected $fillable = [
+        'name', 'slug'
+    ];
+
     public function getRouteKeyName()
     {
         return 'slug';

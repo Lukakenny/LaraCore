@@ -99,7 +99,8 @@
 
                             <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-6">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-xs font-bold text-white shadow-inner">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-xs font-bold text-white shadow-inner">
                                         {{ substr($comment->user->name, 0, 1) }}
                                     </div>
                                     <div>
@@ -109,7 +110,7 @@
                                 </div>
 
                                 <p class="text-slate-300 text-sm leading-relaxed">
-                                    {!! $comment->body !!}
+                                    {!! clean($comment->body)  !!}
                                 </p>
                             </div>
                         @empty
@@ -126,7 +127,7 @@
                                           rows="3"
                                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-sm resize-none"
                                           placeholder="Napiši komentar..."
-                                          ></textarea>
+                                ></textarea>
 
                             </div>
 

@@ -7,7 +7,6 @@ use App\Http\Requests\userUpdatePostRequest;
 use App\Models\CategoryModel;
 use App\Models\PostModel;
 use App\Repositories\UserPostsRepository;
-use Illuminate\Http\Request;
 
 class UserPostsController extends Controller
 {
@@ -59,12 +58,12 @@ class UserPostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( string $id)
+    public function edit(string $id)
     {
         $categories = CategoryModel::all();
-           $post = $this->postRepo->editPost($id);
+        $post = $this->postRepo->editPost($id);
 
-               return view('user/updatePost', compact('post','categories'));
+        return view('user/updatePost', compact('post', 'categories'));
     }
 
     /**
@@ -79,9 +78,9 @@ class UserPostsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( string $id)
+    public function destroy(string $id)
     {
-         $this->postRepo->deletePost($id);
+        $this->postRepo->deletePost($id);
 
         return redirect()->back();
     }
@@ -89,8 +88,8 @@ class UserPostsController extends Controller
     public function myPosts()
     {
 
-       $posts = $this->postRepo->getUserPosts(auth()->id());
+        $posts = $this->postRepo->getUserPosts(auth()->id());
 
-        return view('user/myPosts',compact('posts'));
+        return view('user/myPosts', compact('posts'));
     }
 }

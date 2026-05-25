@@ -11,7 +11,8 @@
                 <input type="text" name="name" placeholder="Upiši ime kategorije (npr. Vesti)..."
                        class="flex-1 bg-white/5 border border-white/10 text-white placeholder-white/30 rounded-xl px-5 py-3 outline-none focus:border-white/30 focus:bg-white/10 transition-all duration-300">
 
-                <button type="submit" class="bg-[#FF2D20] hover:bg-red-600 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg shadow-red-500/30 whitespace-nowrap">
+                <button type="submit"
+                        class="bg-[#FF2D20] hover:bg-red-600 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg shadow-red-500/30 whitespace-nowrap">
                     + Dodaj Kategoriju
                 </button>
             </form>
@@ -31,12 +32,13 @@
                 </a>
 
 
-                  @foreach($categories as $category)
-                    <a href="{{route('admin.categories.index', ['filter' => $category->slug])}}" class="px-5 py-2 rounded-xl text-sm transition-all duration-200 border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
+                @foreach($categories as $category)
+                    <a href="{{route('admin.categories.index', ['filter' => $category->slug])}}"
+                       class="px-5 py-2 rounded-xl text-sm transition-all duration-200 border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
                         {{ $category->name}}
                     </a>
 
-                  @endforeach
+                @endforeach
 
 
             </div>
@@ -51,8 +53,9 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                    @forelse($posts as $post)
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors duration-300 flex flex-col h-full">
+                @forelse($posts as $post)
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors duration-300 flex flex-col h-full">
                         <div class="flex-1">
                             <span class="text-xs text-white/40 mb-2 block">{{$post->created_at}}</span>
                             <h3 class="text-lg font-bold text-white mb-2 leading-tight">{{$post->title}}</h3>
@@ -64,11 +67,11 @@
                                 <p class="text-white/50 text-lg">Trenutno nema objava u ovoj kategoriji.</p>
                             </div>
 
-                    @endforelse
+                        @endforelse
 
 
+                    </div>
             </div>
-        </div>
         </div>
     </div>
 </x-laraLayouts>

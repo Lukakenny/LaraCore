@@ -1,5 +1,6 @@
 <?php
-namespace  App\Repositories;
+
+namespace App\Repositories;
 
 
 use App\Models\PostModel;
@@ -23,14 +24,14 @@ class UserPostsRepository
         return $this->postModel::create($data);
     }
 
-    public function getUserPosts($id)
+    public function getUserPosts(string $id)
     {
         return $this->postModel::where('user_id', $id)
             ->latest()
             ->paginate(20);
     }
 
-    public function deletePost($id)
+    public function deletePost( string $id)
     {
         $post = PostModel::where('id', $id)
             ->where('user_id', auth()->id())
@@ -39,7 +40,7 @@ class UserPostsRepository
         return $post->delete();
     }
 
-    public function editPost($id)
+    public function editPost(string $id)
     {
         return PostModel::where('id', $id)
             ->where('user_id', auth()->id())
@@ -48,10 +49,10 @@ class UserPostsRepository
 
     public function updatePost($post, array $data)
     {
-        $post = \App\Models\PostModel::where('id', $post)
+        $post = PostModel::where('id', $post)
             ->where('user_id', auth()->id())
             ->firstOrFail();
-    return $post->update($data);
+        return $post->update($data);
     }
 }
 

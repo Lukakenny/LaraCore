@@ -12,12 +12,10 @@ class checkAdminOrUser
     /**
      * Handle an incoming request.
      *
-     * @param  Closure(Request): (Response)  $next
+     * @param Closure(Request): (Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        //1.User-> dali je admin ili ne
-        //2User-> da lo je korisnik admi ili ne
 
         $role = Auth::user()->role;
 

@@ -23,7 +23,7 @@ class adminAddCategory extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>"required|unique:categories,name",
+            "name" => "required|unique:categories,name",
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\adminAddCategory;
+use App\Models\PostModel;
 use App\Repositories\adminCategoryRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class CategoryController extends Controller
         $categories = $this->categoryRepo->getAll();
 
 
-        $postsQuery = \App\Models\PostModel::latest();
+        $postsQuery = PostModel::latest();
 
         $selectedCategory = $request->has('filter')
             ? $this->categoryRepo->findBySlug($request->filter)
@@ -49,7 +50,7 @@ class CategoryController extends Controller
      */
     public function store(adminAddCategory $request)
     {
-        $this->categoryRepo->createCategory($request);
+        $this->categoryRepo->createCategory($request->validated());
         return redirect()->route('admin.categories.index');
     }
 

@@ -16,7 +16,7 @@ class CommentController extends Controller
     }
 
 
-    public function store(StoreCommentRequest $request,string $id)
+    public function store(StoreCommentRequest $request, string $id)
     {
         $this->commentRepo->createComment($id, $request->validated());
         return redirect()->back();

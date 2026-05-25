@@ -18,6 +18,7 @@ class CommentRepository
     {
 
         $post = PostModel::findOrFail($postId);
+        $data['body'] = clean($data['body']);
         $data['user_id'] = auth()->id();
         return $post->comments()->create($data);
     }
