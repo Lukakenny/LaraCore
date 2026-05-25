@@ -60,9 +60,10 @@ class UserPostsController extends Controller
      */
     public function edit( $id)
     {
+        $categories = CategoryModel::all();
            $post = $this->postRepo->editPost($id);
 
-               return view('user/updatePost', compact('post'));
+               return view('user/updatePost', compact('post','categories'));
     }
 
     /**

@@ -22,7 +22,7 @@
                 <input type="text"
                        id="title"
                        name="title"
-                       value="Uvod u Vite i Laravel: Zašto je sve tako brzo?"
+                       value="{{$post->title}}"
                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-sm"
                        required>
             </div>
@@ -35,9 +35,9 @@
                     <select id="category_id"
                             name="category_id"
                             class="w-full bg-[#161616] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-sm appearance-none cursor-pointer">
-                        <option value="1" selected class="text-slate-900">Programiranje</option>
-                        <option value="2" class="text-slate-900">Dizajn</option>
-                        <option value="3" class="text-slate-900">Zanimljivosti</option>
+                        @foreach($categories as $category)
+                            <option value="1" selected class="text-slate-900">{{$category->name}}</option>
+                        @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -55,7 +55,7 @@
                           name="body"
                           rows="8"
                           class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-sm resize-none leading-relaxed"
-                          required>Vite je potpuno zamenio stari Webpack u Laravelu i doneo neverovatna ubrzanje prilikom lokalnog razvoja. Više nema čekanja od nekoliko sekundi da se promene osveže...</textarea>
+                          required>{{$post->body}}</textarea>
             </div>
 
             <div class="flex items-center justify-end gap-4 border-t border-white/5 pt-6 mt-8">
