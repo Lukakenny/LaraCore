@@ -34,6 +34,7 @@ Route::middleware('auth',checkAdminOrUser::class)->prefix('admin')->name('admin.
          'edit' => 'user.edit',
          'update' => 'user.update',
      ]);
+     Route::post('/post/{post}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
  });
 
 

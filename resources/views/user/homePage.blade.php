@@ -95,6 +95,47 @@
                         <p class="text-slate-300 text-sm leading-relaxed line-clamp-3 mb-4">
                             {{$post->body}}
                         </p>
+                        @forelse($post->comments as $comment)
+
+                            <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-xs font-bold text-white shadow-inner">
+                                        {{ substr($comment->user->name, 0, 1) }}
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white text-sm font-medium">{{ $comment->user->name }}</h5>
+                                        <p class="text-xs text-slate-400">{{ $comment->created_at->diffForHumans() }}</p>
+                                    </div>
+                                </div>
+
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    {{ $comment->body }}
+                                </p>
+                            </div>
+                        @empty
+                            <p>No comments</p>
+
+                        @endforelse
+                        <form action="{{ route('comments.store', $post->id) }}" method="POST" class="mb-10 mt-6">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="comment" class="sr-only">Tvoj komentar</label>
+                                <textarea id="comment"
+                                          name="body"
+                                          rows="3"
+                                          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-sm resize-none"
+                                          placeholder="Napiši komentar..."
+                                          required></textarea>
+                            </div>
+
+                            <div class="flex justify-end">
+                                <button type="submit"
+                                        class="bg-gradient-to-r from-[#FF2D20] to-red-700 hover:from-red-500 hover:to-red-600 text-white px-6 py-2 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-red-500/20 active:scale-95">
+                                    Pošalji komentar
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
                 @endforeach

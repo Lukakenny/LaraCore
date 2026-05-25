@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PostModel extends Model
 {
@@ -21,5 +22,10 @@ class PostModel extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(CommentModel::class, 'post_id');
     }
 }
