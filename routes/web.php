@@ -24,15 +24,17 @@ Route::middleware('auth',checkAdminOrUser::class)->prefix('admin')->name('admin.
         'store' => 'categories.store',
     ]);
 });
-Route::get('/user/myPosts', [UserPostsController::class,'myPosts'])->name('user.myPosts');
+ Route::middleware('auth')->group(function () {
+     Route::get('/feed/myPosts', [UserPostsController::class,'myPosts'])->name('user.myPosts');
 
-Route::resource('user', UserPostsController::class)->names([
-    'index' => 'user.index',
-    'store' => 'user.store',
-    'destroy' => 'user.destroy',
-    'edit' => 'user.edit',
-    'update' => 'user.update',
-]);
+     Route::resource('feed', UserPostsController::class)->names([
+         'index' => 'user.index',
+         'store' => 'user.store',
+         'destroy' => 'user.destroy',
+         'edit' => 'user.edit',
+         'update' => 'user.update',
+     ]);
+ });
 
 
 
